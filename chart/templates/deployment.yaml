@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-exporter
+  labels:
+    app: mongodb-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-exporter
+  template:
+    metadata:
+      labels:
+        app: mongodb-exporter
+        app.kubernetes.io/name: mongodb-exporter
+      annotations:
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongodb-exporter
+        image: percona/mongodb_exporter:0.40.0
+        args:
+        - --mongodb.uri=$(MONGODB_URI)
+        - --collect-all
+        - --discovering-mode
+        - --mongodb.direct-connect=false
+        - "--web.listen-address=:9102"
+        ports:
+        - containerPort: 9102
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-uri-secret
+              key: mongodbUri
