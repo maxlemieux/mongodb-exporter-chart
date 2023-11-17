@@ -1,6 +1,8 @@
 # mongodb-exporter-chart
 A Helm chart for https://github.com/percona/mongodb_exporter
 
+This is experimental and not intended for production.
+
 # Installation
 
 ```
