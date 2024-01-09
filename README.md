@@ -22,14 +22,4 @@ Set `mongodbUri` in `values.yaml` to a user with clusterMonitor permissions for 
 
 # Scraping with New Relic
 
-The pod in this deployment has the expected Prometheus scrape annotation. In the simplest case, the integrations filter can be extended. Here is an example for a typical [newrelic-bundle](https://docs.newrelic.com/docs/kubernetes-pixie/kubernetes-integration/installation/kubernetes-integration-install-configure/#installing-and-configuring-nri-bundle-with-helm) configuration:
-
-```
-newrelic-prometheus-agent:
-  enabled: true
-  config:
-    kubernetes:
-      integrations_filter:
-        source_labels: ["app.kubernetes.io/name", "app.newrelic.io/name"]
-        app_values: ["redis", "traefik", "calico", "nginx", "coredns", "etcd", "cockroachdb", "mongodb-exporter"]
-```
+The pod in this deployment has the expected Prometheus scrape annotation. In order to decorate the metrics with the `mongodb_cluster_name` attribute as required by the quickstart dashboard, you will need to add configuration to your Prometheus scraper, as documented here: https://docs.newrelic.com/docs/infrastructure/host-integrations/host-integrations-list/mongodb/mongodb-monitoring-integration-new/#scrape-the-metrics
