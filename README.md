@@ -22,4 +22,4 @@ Set `mongodbUri` in `values.yaml` to a user with clusterMonitor permissions for 
 
 # Scraping with New Relic
 
-The pod in this deployment has the expected Prometheus scrape annotation. In order to decorate the metrics with the `mongodb_cluster_name` attribute as required by the quickstart dashboard, you will need to add configuration to your Prometheus scraper, as documented here: https://docs.newrelic.com/docs/infrastructure/host-integrations/host-integrations-list/mongodb/mongodb-monitoring-integration-new/#scrape-the-metrics
+The pod in this deployment has the expected Prometheus scrape annotation. In order to decorate the metrics with the `mongodb_cluster_name` attribute as required by the quickstart dashboard, you will need to add configuration to your Prometheus scraper, as documented here: https://docs.newrelic.com/docs/infrastructure/host-integrations/host-integrations-list/mongodb/mongodb-monitoring-integration-new/#containerized-environments
